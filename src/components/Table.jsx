@@ -10,10 +10,8 @@ export function Table() {
 
   useEffect(() => {
     if (planetSearch !== '') {
-      const receba = planetas.filter((p) => p.name.includes(planetSearch));
-      console.log(planetSearch);
-      console.log(receba);
-      setPlanetas(receba);
+      const receive = planetas.filter((p) => p.name.includes(planetSearch));
+      setPlanetas(receive);
     } else {
       setPlanetas(planets);
     }
