@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { SearchContext } from '../context/SearchContext';
-// import { PContext } from '../context/PlanetContext';
 
 function Search() {
   const [planetName, setPlanetName] = useState('');
