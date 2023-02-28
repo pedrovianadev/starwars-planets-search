@@ -15,7 +15,7 @@ export function Table() {
     setPlanetas(receive);
   }, [planetSearch]);
 
-  const filtraPopulation = (comparison, value) => {
+  const filterPopulation = (comparison, value) => {
     if (comparison === 'igual a') {
       const lista = planets.filter((p) => parseInt(p.population, 10) === value);
       setPlanetas(lista);
@@ -29,7 +29,7 @@ export function Table() {
     }
   };
 
-  const filtraOrbital = (comparison, value) => {
+  const filterOrbital = (comparison, value) => {
     if (comparison === 'igual a') {
       const lista = planets.filter((p) => p.orbital_period === value);
       setPlanetas(lista);
@@ -42,7 +42,7 @@ export function Table() {
     }
   };
 
-  const filtraRotation = (comparison, value) => {
+  const filterRotation = (comparison, value) => {
     if (comparison === 'igual a') {
       const lista = planets.filter((p) => p.rotation_period === value);
       setPlanetas(lista);
@@ -55,7 +55,7 @@ export function Table() {
     }
   };
 
-  const filtraDiameter = (comparison, value) => {
+  const filterDiameter = (comparison, value) => {
     if (comparison === 'igual a') {
       const lista = planets.filter((p) => p.diameter === value);
       setPlanetas(lista);
@@ -68,7 +68,7 @@ export function Table() {
     }
   };
 
-  const filtraSurface = (comparison, value) => {
+  const filterSurface = (comparison, value) => {
     if (comparison === 'igual a') {
       const lista = planets.filter((p) => p.surface_water === value);
       setPlanetas(lista);
@@ -86,16 +86,16 @@ export function Table() {
       console.log(filter);
       const { column, comparison, value } = filter[filter.length - 1];
       if (column === 'population') {
-        filtraPopulation(comparison, parseInt(value, 10));
+        filterPopulation(comparison, parseInt(value, 10));
       } else if (column === 'orbital_period') {
-        filtraOrbital(comparison, parseInt(value, 10));
+        filterOrbital(comparison, parseInt(value, 10));
       } else if (column === 'rotation_period') {
-        filtraRotation(comparison, parseInt(value, 10));
+        filterRotation(comparison, parseInt(value, 10));
       } else if (column === 'diameter') {
-        filtraDiameter(comparison, parseInt(value, 10));
+        filterDiameter(comparison, parseInt(value, 10));
         console.log('diaaaameter');
       } else if (column === 'surface_water') {
-        filtraSurface(comparison, parseInt(value, 10));
+        filterSurface(comparison, parseInt(value, 10));
       }
     }
   }, [filter]);
