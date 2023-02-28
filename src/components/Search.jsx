@@ -13,7 +13,7 @@ function Search() {
   return (
     <form>
       <label htmlFor="planetName">
-        name:
+        Name:
         <input
           type="text"
           name="planetName"

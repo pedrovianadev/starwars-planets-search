@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import './App.css';
+import Filter from './components/Filter';
 import Search from './components/Search';
 import { Table } from './components/Table';
 import { PlanetContext } from './context/PlanetContext';
@@ -9,8 +10,9 @@ function App() {
 
   return (
     <div>
-      <span>StarWars Planet Search</span>
+      <h1>StarWars Planet Search</h1>
       <Search />
+      <Filter />
       { planets !== null ? <Table /> : 'Carregando'}
     </div>
   );
