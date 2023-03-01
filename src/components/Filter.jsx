@@ -49,7 +49,14 @@ function Filter() {
           onChange={ handleChange }
           data-testid="column-filter"
         >
-          { select.map((p) => <option value={ p } key={ p }>{ p }</option>) }
+          { select.map((p) => (
+            <option
+              value={ p }
+              key={ p }
+              data-testid={ `filter-${p}` }
+            >
+              { p }
+            </option>))}
         </select>
       </label>
       <label htmlFor="select2">
@@ -61,9 +68,9 @@ function Filter() {
           onChange={ handleChange }
           data-testid="comparison-filter"
         >
-          <option value="maior que">maior que</option>
-          <option value="menor que">menor que</option>
-          <option value="igual a">igual a</option>
+          <option value="maior que" data-testid="filter-maiorq">maior que</option>
+          <option value="menor que" data-testid="filter-menorq">menor que</option>
+          <option value="igual a" data-testid="filter-iguala">igual a</option>
         </select>
       </label>
       <label htmlFor="value">
