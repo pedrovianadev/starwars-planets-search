@@ -2,11 +2,26 @@ import React, { useContext, useState, useEffect } from 'react';
 import { PlanetContext } from '../context/PlanetContext';
 import { SearchContext } from '../context/SearchContext';
 import { FilterContext } from '../context/FilterContext';
+import { OrderContext } from '../context/OrderContext';
+import useOrdena from '../hooks/useOrdena';
 
 export function Table() {
+  const {
+    ordenaPopulationASC,
+    ordenaPopulationDESC,
+    ordenaOrbitalASC,
+    ordenaOrbitalDESC,
+    ordenaRotationASC,
+    ordenaRotationDESC,
+    ordenaDiameterASC,
+    ordenaDiameterDESC,
+    ordenaSurfaceASC,
+    ordenaSurfaceDESC,
+  } = useOrdena();
   const { planets } = useContext(PlanetContext);
   const { planetSearch } = useContext(SearchContext);
   const { filter } = useContext(FilterContext);
+  const { ordem } = useContext(OrderContext);
 
   const [planetas, setPlanetas] = useState(planets);
 
@@ -99,6 +114,60 @@ export function Table() {
     }
   }, [filter]);
 
+  useEffect(() => {
+    if (ordem !== undefined) {
+      const { order } = ordem;
+      const { column, sort } = order;
+      if (column === 'surface_water') {
+        if (sort === 'ASC') {
+          setPlanetas(ordenaSurfaceASC());
+        } else {
+          setPlanetas(ordenaSurfaceDESC());
+        }
+      }
+    }
+  }, [ordem]);
+
+  useEffect(() => {
+    if (ordem !== undefined) {
+      const { order } = ordem;
+      const { column, sort } = order;
+      if (column === 'rotation_period') {
+        if (sort === 'ASC') {
+          setPlanetas(ordenaRotationASC());
+        } else {
+          setPlanetas(ordenaRotationDESC());
+        }
+      } else if (column === 'diameter') {
+        if (sort === 'ASC') {
+          setPlanetas(ordenaDiameterASC());
+        } else {
+          setPlanetas(ordenaDiameterDESC());
+        }
+      }
+    }
+  }, [ordem]);
+
+  useEffect(() => {
+    if (ordem !== undefined) {
+      const { order } = ordem;
+      const { column, sort } = order;
+      if (column === 'population') {
+        if (sort === 'ASC') {
+          setPlanetas(ordenaPopulationASC());
+        } else {
+          setPlanetas(ordenaPopulationDESC());
+        }
+      } else if (column === 'orbital_period') {
+        if (sort === 'ASC') {
+          setPlanetas(ordenaOrbitalASC());
+        } else {
+          setPlanetas(ordenaOrbitalDESC());
+        }
+      }
+    }
+  }, [ordem]);
+
   return (
     <table>
       <thead>
@@ -121,7 +190,7 @@ export function Table() {
       <tbody>
         { planetas.map((p) => (
           <tr key={ p.name }>
-            <td>{p.name}</td>
+            <td data-testid="planet-name">{p.name}</td>
             <td>{p.rotation_period}</td>
             <td>{p.orbital_period}</td>
             <td>{p.diameter}</td>
